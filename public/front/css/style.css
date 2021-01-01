@@ -934,5 +934,7 @@ blockquote {
 .project-meta p{
   margin-bottom: 0;
 }
-
+.detail-blog-img{
+  max-width: 400px;
+}
 /*# sourceMappingURL=maps/style.css.map */

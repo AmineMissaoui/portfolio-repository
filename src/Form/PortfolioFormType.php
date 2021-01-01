@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Project;
+use App\Entity\PortfolioProject;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -41,7 +41,7 @@ class PortfolioFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Project::class,
+            'data_class' => PortfolioProject::class,
         ]);
     }
 }

@@ -23,10 +23,10 @@ class PortfolioImages
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Project::class, inversedBy="portfolioImages")
+     * @ORM\ManyToOne(targetEntity=PortfolioProject::class, inversedBy="portfolioImages")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $project;
+    private $PortfolioProject;
 
     public function getId(): ?int
     {
@@ -45,14 +45,14 @@ class PortfolioImages
         return $this;
     }
 
-    public function getProject(): ?Project
+    public function getPortfolioProject(): ?PortfolioProject
     {
-        return $this->project;
+        return $this->PortfolioProject;
     }
 
-    public function setProject(?Project $project): self
+    public function setPortfolioProject(?PortfolioProject $PortfolioProject): self
     {
-        $this->project = $project;
+        $this->PortfolioProject = $PortfolioProject;
 
         return $this;
     }

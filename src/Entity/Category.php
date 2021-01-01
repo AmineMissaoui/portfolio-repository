@@ -25,13 +25,13 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=project::class, mappedBy="category")
+     * @ORM\OneToMany(targetEntity=PortfolioProject::class, mappedBy="category")
      */
-    private $project;
+    private $PortfolioProject;
 
     public function __construct()
     {
-        $this->project = new ArrayCollection();
+        $this->PortfolioProject = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,29 +52,29 @@ class Category
     }
 
     /**
-     * @return Collection|project[]
+     * @return Collection|PortfolioProject[]
      */
-    public function getProject(): Collection
+    public function getPortfolioProject(): Collection
     {
-        return $this->project;
+        return $this->PortfolioProject;
     }
 
-    public function addProject(project $project): self
+    public function addPortfolioProject(PortfolioProject $PortfolioProject): self
     {
-        if (!$this->project->contains($project)) {
-            $this->project[] = $project;
-            $project->setCategory($this);
+        if (!$this->PortfolioProject->contains($PortfolioProject)) {
+            $this->PortfolioProject[] = $PortfolioProject;
+            $PortfolioProject->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeProject(project $project): self
+    public function removePortfolioProject(PortfolioProject $PortfolioProject): self
     {
-        if ($this->project->removeElement($project)) {
+        if ($this->PortfolioProject->removeElement($PortfolioProject)) {
             // set the owning side to null (unless already changed)
-            if ($project->getCategory() === $this) {
-                $project->setCategory(null);
+            if ($PortfolioProject->getCategory() === $this) {
+                $PortfolioProject->setCategory(null);
             }
         }
 
