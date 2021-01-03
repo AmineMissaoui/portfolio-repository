@@ -83,11 +83,25 @@ class AdminController extends AbstractController
         $formProject->handleRequest($request);
 
         if($formProject->isSubmitted()){
+            $images = $formProject->get('upload')->getData();
+            foreach($images as $image){
+                //pour gere le nom du fichier
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                //pour mettre le fichier dans le repertoire
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                //pour stocker l'image dans la bdd
+                $img = new PortfolioImages;
+                $img->setName($fichier);
+                $Project->addPortfolioImage($img);
+            }
             $em=$this->getDoctrine()->getManager();
             $em->flush();
-            return $this->redirectToRoute("portfolioDasboard");
+            return $this->redirectToRoute("updatePortfolioProject" , ['id'=>$id]);
         }
-        return $this->render("/admin/updatePortfolioItem.html.twig",array('formProject'=>$formProject->createView()));
+        return $this->render("/admin/updatePortfolioItem.html.twig",array('formProject'=>$formProject->createView(),'Project'=>$Project));
 
     }
     /**
@@ -146,6 +160,16 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted()){
+            $image = $form->get('upload')->getData();
+            //pour gere le nom du fichier
+            $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+            //pour mettre le fichier dans le repertoire
+            $image->move(
+                $this->getParameter('images_directory'),
+                $fichier
+            );
+            //pour stocker l'image dans la bdd
+            $blogPost->setBlogPostImage($fichier);
             $em=$this->getDoctrine()->getManager();
             $em->flush();
             return $this->redirectToRoute("blogDasboard");
@@ -153,4 +177,19 @@ class AdminController extends AbstractController
         return $this->render("/admin/updateBlogPostItem.html.twig",array('formBlog'=>$form->createView()));
 
     }
+    /**
+     * @Route("/deleteImage/{id}", name="deleteImage")
+     */
+        public function deleteImage(PortfolioImages $image){
+                // On récupère le nom de l'image
+                $id = $image->getPortfolioProject()->getId();
+                $nom = $image->getName();
+                // On supprime le fichier
+                unlink($this->getParameter('images_directory').'/'.$nom);
+                // On supprime l'entrée de la base
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($image);
+                $em->flush();
+                return $this->redirectToRoute("updatePortfolioProject" , ['id'=>$id]);
+        }
 }

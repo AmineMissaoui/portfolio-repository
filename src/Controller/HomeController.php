@@ -8,13 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
-* @Route("/home", name="home")
-*/
+
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/home", name="home")
      */
     public function index(): Response
     {
@@ -23,21 +21,14 @@ class HomeController extends AbstractController
         ]);
     }
     /**
-     * @Route("/portfolio", name="homePortfolio")
+     * @Route("home/portfolio", name="homePortfolio")
      */
     public function listPortfolioProject()
     {
         $Project=$this->getDoctrine()->getRepository(PortfolioProject::class)->findAll();
-        return $this->render("home/homeProjects.html.twig",array('listProjectHome'=>$Project));
+        $BlogPost=$this->getDoctrine()->getRepository(BlogPost::class)->findAll();
+        return $this->render("home/homeProjects.html.twig",array('listProjectHome'=>$Project, 'listBlogHome'=>$BlogPost));
 
     }
-    /**
-     * @Route("/blog", name="homeBlog")
-     */
-    public function showBlog()
-    {
-        $BlogPost=$this->getDoctrine()->getRepository(BlogPost::class)->findAll();
-        return $this->render("home/homeBlog.html.twig",array('listBlogHome'=>$BlogPost));
-    }
-     
+
 }

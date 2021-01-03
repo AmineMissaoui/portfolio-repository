@@ -12,26 +12,26 @@
         <!-- general form elements -->
         <div class="card card-primary">
 
-          {{ form_start( formBlog) }}
+          {{ form_start(formBlog) }}
           <form>
             <div class="card-body">
               <div class="row">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">{{ form_label( formBlog.title, 'title') }}</label>
+                    <label for="exampleInputEmail1">{{ form_label(formBlog.title, 'title') }}</label>
                     {{ form_widget( formBlog.title, {'attr': {'class': 'form-control'}}) }}
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label>{{ form_label( formBlog.createdAt, 'Creation date') }}</label>
-                    {{ form_widget( formBlog.createdAt, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget( formBlog.createdAt, {'attr': {'class': 'form-control js-datepicker'}}) }}
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label>{{ form_label( formBlog.deprecatedAt, 'End date') }}</label>
-                    {{ form_widget( formBlog.deprecatedAt, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget( formBlog.deprecatedAt, {'attr': {'class': 'form-control js-datepicker'}}) }}
                   </div>
                 </div>
                 <div class="col-lg-4">

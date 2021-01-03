@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="{{ asset('back/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('back/dist/css/adminlte.min.css')}}">
+  <!-- datepicker style -->
+  <link rel="stylesheet" href="{{ asset('back/datepicker/datepicker.css')}}">  
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -239,5 +241,15 @@
 
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('back/dist/js/demo.js')}}"></script>
+<!-- datepicker -->
+<script src="{{ asset('back/datepicker/datepicker.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        // you may need to change this code if you are not using Bootstrap Datepicker
+        $('.js-datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+    });
+</script>
 </body>
 </html>
