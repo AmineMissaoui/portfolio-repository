@@ -156,10 +156,10 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('back/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Amine Missaoui</a>
         </div>
       </div>
 
@@ -169,7 +169,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="../gallery.html" class="nav-link">
+            <a href="{{ path('portfolioDasboard') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Portfolio
@@ -177,7 +177,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="../gallery.html" class="nav-link">
+            <a href="{{ path('blogDasboard') }}" class="nav-link">
               <i class="nav-icon fas fa-file-signature"></i>
               <p>
                 Blog
@@ -193,6 +193,21 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+  <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{% block section %} {% endblock %}</h1>
+          </div>
+          {# <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">jsGrid</li>
+            </ol>
+          </div> #}
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
 {% block body %}
 
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\PortfolioProject;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -25,7 +26,7 @@ class PortfolioFormType extends AbstractType
             //     'html5' => false,
             //     'attr' => ['class' => 'js-datepicker'],
             // ])
-            ->add('link')
+            ->add('link', TextType::class)
             ->add('client')
             ->add('upload',FileType::class, [
                 'label' => false,

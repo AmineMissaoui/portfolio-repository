@@ -14,7 +14,7 @@
             class="text-primary"> on <span>{{blog_post.blogPostCategory}}</span></p>
         <div class="content">
           <img src="{{ asset('/uploads/' ~ blog_post.blogPostImage  ) }}" class="detail-blog-img img-fluid rounded float-left mr-5 mb-4">
-            {{blog_post.description}}
+            {{blog_post.description | raw }}
           
         </div>
       </div>

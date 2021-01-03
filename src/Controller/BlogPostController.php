@@ -26,44 +26,6 @@ class BlogPostController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="blog_post_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $blogPost = new BlogPost();
-        $form = $this->createForm(BlogPostType::class, $blogPost);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $image = $form->get('upload')->getData();
-           
-            //pour gere le nom du fichier
-            $fichier = md5(uniqid()) . '.' . $image->guessExtension();
-            //pour mettre le fichier dans le repertoire
-            $image->move(
-                $this->getParameter('images_directory'),
-                $fichier
-            );
-            //pour stocker l'image dans la bdd
-                
-            $blogPost->setBlogPostImage($fichier);
-            $blogPost->setFlag("inactive");
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($blogPost);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('blog');
-        }
-
-        return $this->render('blog_post/new.html.twig', [
-            'blog_post' => $blogPost,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/{id}", name="blogDetail", methods={"GET"})
      */
     public function show(BlogPost $blogPost): Response
